@@ -9,7 +9,8 @@ import com.orangehrm.utilities.ExtentManager;
 public class DummyClass extends BaseClass {
 	@Test
 	public void dummyTest() {
-		//Test Checking
+		//Test Checking it is failed
+		//Rechecking again
 		//ExtentManager.startTest("DummyTest1 Test"); --> This has been implemented in test listner
 		// String title = driver.getTitle();
 		String title = getDriver().getTitle();
