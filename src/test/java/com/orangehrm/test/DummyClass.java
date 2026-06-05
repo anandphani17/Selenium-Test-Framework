@@ -10,7 +10,7 @@ public class DummyClass extends BaseClass {
 	@Test
 	public void dummyTest() {
 		//Test Checking it is failed
-		//Rechecking again and again
+		//Rechecking again and again for the 2nd time
 		//ExtentManager.startTest("DummyTest1 Test"); --> This has been implemented in test listner
 		// String title = driver.getTitle();
 		String title = getDriver().getTitle();
