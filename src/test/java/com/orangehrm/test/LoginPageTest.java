@@ -43,7 +43,7 @@ public class LoginPageTest extends BaseClass {
 		logger.info("Running testMethod2 on thread: "+ Thread.currentThread().getId());
 		ExtentManager.logStep("Navigating to Login page entering username and password");
 		loginPage.login(username, password);
-		String expectedErrorMessage = "Invalid credentials1";
+		String expectedErrorMessage = "Invalid credentials";
 		Assert.assertTrue(loginPage.verifyErrorMsg(expectedErrorMessage), "Test Failed - Invalid Error message");
 		ExtentManager.logStep("Validation successful");
 		ExtentManager.logStep("Logged out successfully");
