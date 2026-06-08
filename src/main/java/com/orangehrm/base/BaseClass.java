@@ -163,12 +163,14 @@ public class BaseClass {
 				logger.info("FirefoxDriver Instance is created");
 			} else if (browser.equalsIgnoreCase("edge")) {
 				EdgeOptions options = new EdgeOptions();
-				options.addArguments("--headless=new"); // Run Edge in headless mode
-				options.addArguments("--disable-gpu"); // Disable GPU acceleration
-				options.addArguments("--remote-allow-origins=*"); // Set window size
-				//options.addArguments("--disable-notifications"); // Disable pop-up notifications
-				options.addArguments("--no-sandbox"); // Needed for CI/CD
-				options.addArguments("--disable-dev-shm-usage"); // Prevent resource-limited issues
+				// options.addArguments("--headless=new"); // Run Edge in headless mode
+				// options.addArguments("--disable-gpu"); // Disable GPU acceleration
+				// options.addArguments("--remote-allow-origins=*"); // Set window size
+				// options.addArguments("--disable-notifications"); // Disable pop-up
+				// notifications
+				// options.addArguments("--no-sandbox"); // Needed for CI/CD
+				// options.addArguments("--disable-dev-shm-usage"); // Prevent resource-limited
+				// issues
 				// driver = new EdgeDriver();
 				driver.set(new EdgeDriver(options));
 				ExtentManager.registerDriver(getDriver());
@@ -195,13 +197,21 @@ public class BaseClass {
 
 		// Navigate the url
 
-		try {
-			// driver.get(prop.getProperty("url"));
+		/*
+		 * try { // driver.get(prop.getProperty("url"));
+		 * getDriver().get(prop.getProperty("url")); } catch (Exception e) {
+		 * logger.error("Failed to navigate to the url" + e.getMessage()); }
+		 */
+		boolean seleniumGrid = Boolean.parseBoolean(prop.getProperty("seleniumGrid"));
+
+		if (seleniumGrid) {
+			getDriver().get(prop.getProperty("url_grid"));
+		} else {
 			getDriver().get(prop.getProperty("url"));
-		} catch (Exception e) {
-			logger.error("Failed to navigate to the url" + e.getMessage());
 		}
-	}/*
+	}
+
+	/*
 		 * /@AfterMethod public synchronized void tearDown() { if (getDriver() != null)
 		 * { try { // driver.quit(); getDriver().quit(); } catch (Exception e) {
 		 * System.out.println("Unable to quit the driver" + e.getMessage()); } }
@@ -258,10 +268,10 @@ public class BaseClass {
 
 	}
 
-	/*// Driver setter method
-	public void setDriver(ThreadLocal<WebDriver> driver) {
-		BaseClass.driver = driver;
-	} */
+	/*
+	 * // Driver setter method public void setDriver(ThreadLocal<WebDriver> driver)
+	 * { BaseClass.driver = driver; }
+	 */
 
 	public void staticWait(int seconds) {
 		LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(seconds));
